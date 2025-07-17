@@ -4,7 +4,7 @@ A prototype governance bot for OpenChat that implements a novel fractal sortitio
 
 ## 🔍 Overview
 
-The Fractal Sortition Bot is an experimental governance system designed to fairly and efficiently select delegates in decentralized communities. It addresses common issues in DAO governance such as token plutocracy, popularity contests, and passive voting by combining:
+The Fractal Sortition Bot is an experimental implementation of the governance system described in "[Revolutionising DAO Governance with Fractal Sortition](https://medium.com/freedao/revolutionising-dao-governance-with-fractal-sortition-ff18fdda8692)". This innovative system is designed to fairly and efficiently select delegates in decentralized communities, addressing common issues in DAO governance such as token plutocracy, popularity contests, and passive voting by combining:
 
 - **Random Selection (Sortition)** - Ensures equal opportunity for all members
 - **Peer Evaluation** - Incorporates merit through small-group deliberation
@@ -170,6 +170,7 @@ This project is an independent implementation using the OpenChat SDK. The includ
 
 ## 🔗 Links
 
+- [Fractal Sortition Original Article](https://medium.com/freedao/revolutionising-dao-governance-with-fractal-sortition-ff18fdda8692) - The governance concept this project implements
 - [OpenChat Platform](https://oc.app)
 - [Internet Computer](https://internetcomputer.org)
 - [Motoko Language](https://internetcomputer.org/docs/current/motoko/main/motoko)
