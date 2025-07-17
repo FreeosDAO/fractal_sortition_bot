@@ -154,8 +154,8 @@ npm --prefix frontend run verify
 - `open-chat-bots/motoko/examples/` - Example bot implementations
 
 **Project Documentation:**
-- `Fractal_Sorition_Bot_Overview.md` - High-level project overview
-- `Fractal_Sorition_Spec.md` - Detailed technical specification
+- `Fractal_Sortition_Bot_Overview.md` - High-level project overview
+- `Fractal_Sortition_Spec.md` - Detailed technical specification
 
 ## Code Style
 
