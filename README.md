@@ -164,9 +164,9 @@ This is an experimental governance prototype. Contributions welcome for:
 
 ## 📄 License
 
-This project is part of the OpenChat ecosystem. See individual component licenses:
-- OpenChat platform: [AGPLv3](open-chat/LICENSE)
-- Bot SDK: [MIT](open-chat-bots/LICENSE)
+This project is an independent implementation using the OpenChat SDK. The included OpenChat platform and SDK code retain their original licenses:
+- OpenChat platform code: [AGPLv3](open-chat/LICENSE)
+- OpenChat Bot SDK: [MIT](open-chat-bots/LICENSE)
 
 ## 🔗 Links
 
