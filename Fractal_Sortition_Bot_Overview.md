@@ -194,10 +194,3 @@ var activePetition: ?Petition;
 | Petition spam                 | Limit 1 active petition per term. Optional cooldown time per initiator. |
 
 ---
-
-## 🔮 Stretch Goals (Future Enhancements)
-
-* Anonymous voting using zk-proofs or DecideID extensions.
-* Integration with OpenChat calendar or reminders for session times.
-* Dynamic group sizes beyond 3 or 5, based on active participation.
-* Voting interface via inline components (if OpenChat supports it).
