@@ -1,0 +1,176 @@
+import "../../../libraries/types/can.did";
+
+type ActiveGroupsArgs = record {
+    group_ids : vec ChatId;
+    community_ids : vec CommunityId;
+    active_since : opt TimestampMillis;
+};
+
+type ActiveGroupsResponse = variant {
+    Success : record {
+        timestamp : TimestampMillis;
+        active_groups : vec ChatId;
+        active_communities : vec CommunityId;
+        deleted_groups : vec DeletedGroupInfo;
+        deleted_communities : vec DeletedCommunityInfo;
+    };
+};
+
+type RecommendedGroupsArgs = record {
+    count : nat8;
+    exclusions : vec ChatId;
+};
+
+type RecommendedGroupsResponse = variant {
+    Success : record {
+        groups : vec PublicGroupSummary;
+    };
+};
+
+type DeletedCommunityInfo = record {
+    id : CommunityId;
+    timestamp : TimestampMillis;
+    deleted_by : UserId;
+    name : text;
+    public : bool;
+};
+
+type DeletedGroupInfo = record {
+    id : ChatId;
+    timestamp : TimestampMillis;
+    deleted_by : UserId;
+    group_name : text;
+    name : text;
+    public : bool;
+};
+
+type SearchArgs = record {
+    search_term : text;
+    max_results : nat8;
+};
+
+type SearchResponse = variant {
+    Success : SearchSuccessResult;
+    TermTooShort : nat8;
+    TermTooLong : nat8;
+    InvalidTerm;
+    Error : OCError;
+};
+
+type SearchSuccessResult = record {
+    matches : vec GroupMatch;
+    total : nat32;
+};
+
+type ExploreCommunitiesArgs = record {
+    search_term : opt text;
+    languages : vec text;
+    page_index : nat32;
+    page_size : nat8;
+    include_moderation_flags : nat32;
+};
+
+type ExploreCommunitiesResponse = variant {
+    Success : ExploreCommunitiesSuccess;
+    TermTooShort : nat8;
+    TermTooLong : nat8;
+    InvalidTerm;
+    InvalidFlags;
+    Error : OCError;
+};
+
+type ExploreCommunitiesSuccess = record {
+    matches : vec CommunityMatch;
+    total : nat32;
+};
+
+type ExploreGroupsArgs = record {
+    search_term : opt text;
+    page_index : nat32;
+    page_size : nat8;
+};
+
+type ExploreGroupsResponse = variant {
+    Success : ExploreGroupsSuccess;
+    TermTooShort : nat8;
+    TermTooLong : nat8;
+    InvalidTerm;
+    Error : OCError;
+};
+
+type ExploreGroupsSuccess = record {
+    matches : vec GroupMatch;
+    total : nat32;
+};
+
+type LookupChannelByGroupIdArgs = record {
+    group_id : ChatId;
+};
+
+type LookupChannelByGroupIdResponse = variant {
+    Success : record {
+        community_id : CommunityId;
+        channel_id : ChannelId;
+    };
+    NotFound;
+    Error : OCError;
+};
+
+type RevokeCommunityVerificationArgs = record {
+    community_id : CommunityId;
+};
+
+type RevokeCommunityVerificationResponse = variant {
+    Success;
+    NotFound;
+};
+
+type RevokeGroupVerificationArgs = record {
+    group_id : ChatId;
+};
+
+type RevokeGroupVerificationResponse = variant {
+    Success;
+    NotFound;
+};
+
+type SetCommunityVerificationArgs = record {
+    community_id : CommunityId;
+    name : text;
+};
+
+type SetCommunityVerificationResponse = variant {
+    Success;
+    NotFound;
+    NameReserved;
+    NameTaken;
+    AlreadyVerified;
+    InternalError : text;
+};
+
+type SetGroupVerificationArgs = record {
+    group_id : ChatId;
+    name : text;
+};
+
+type SetGroupVerificationResponse = variant {
+    Success;
+    NotFound;
+    NameReserved;
+    NameTaken;
+    AlreadyVerified;
+    InternalError : text;
+};
+
+service : {
+    active_groups : (ActiveGroupsArgs) -> (ActiveGroupsResponse) query;
+    explore_communities : (ExploreCommunitiesArgs) -> (ExploreCommunitiesResponse) query;
+    explore_groups : (ExploreGroupsArgs) -> (ExploreGroupsResponse) query;
+    lookup_channel_by_group_id : (LookupChannelByGroupIdArgs) -> (LookupChannelByGroupIdResponse) query;
+    recommended_groups : (RecommendedGroupsArgs) -> (RecommendedGroupsResponse) query;
+    search : (SearchArgs) -> (SearchResponse) query;
+    revoke_community_verification : (RevokeCommunityVerificationArgs) -> (RevokeCommunityVerificationResponse);
+    revoke_group_verification : (RevokeGroupVerificationArgs) -> (RevokeGroupVerificationResponse);
+    set_community_verification : (SetCommunityVerificationArgs) -> (SetCommunityVerificationResponse);
+    set_group_verification : (SetGroupVerificationArgs) -> (SetGroupVerificationResponse);
+};

@@ -1,0 +1,63 @@
+[package]
+name = "local_user_index_canister_impl"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+candid = { workspace = true }
+canister_api_macros = { path = "../../../libraries/canister_api_macros" }
+canister_client = { path = "../../../libraries/canister_client" }
+canister_logger = { path = "../../../libraries/canister_logger" }
+canister_state_macros = { path = "../../../libraries/canister_state_macros" }
+canister_time = { path = "../../../libraries/canister_time" }
+canister_tracing_macros = { path = "../../../libraries/canister_tracing_macros" }
+community_canister = { path = "../../community/api" }
+community_canister_c2c_client = { path = "../../community/c2c_client" }
+constants = { path = "../../../libraries/constants" }
+event_store_producer = { workspace = true }
+event_store_producer_cdk_runtime = { workspace = true }
+event_store_utils = { workspace = true }
+fire_and_forget_handler = { path = "../../../libraries/fire_and_forget_handler" }
+futures = { workspace = true }
+group_canister = { path = "../../group/api" }
+group_canister_c2c_client = { path = "../../group/c2c_client" }
+http_request = { path = "../../../libraries/http_request" }
+ic-cdk = { workspace = true }
+ic-cdk-timers = { workspace = true }
+ic-stable-structures = { workspace = true }
+itertools = { workspace = true }
+json = { path = "../../../libraries/json" }
+jwt = { path = "../../../libraries/jwt" }
+ledger_utils = { path = "../../../libraries/ledger_utils" }
+local_user_index_canister = { path = "../api" }
+msgpack = { path = "../../../libraries/msgpack" }
+notifications_index_canister = { path = "../../notifications_index/api" }
+oc_error_codes = { path = "../../../libraries/error_codes" }
+online_users_canister = { path = "../../online_users/api" }
+online_users_canister_c2c_client = { path = "../../online_users/c2c_client" }
+p256_key_pair = { path = "../../../libraries/p256_key_pair" }
+principal_to_user_id_map = { path = "../../../libraries/principal_to_user_id_map" }
+proof_of_unique_personhood = { path = "../../../libraries/proof_of_unique_personhood" }
+rand = { workspace = true }
+serde = { workspace = true }
+serde_bytes = { workspace = true }
+serde_json = { workspace = true }
+sha256 = { path = "../../../libraries/sha256" }
+stable_memory = { path = "../../../libraries/stable_memory" }
+stable_memory_map = { path = "../../../libraries/stable_memory_map" }
+timer_job_queues = { path = "../../../libraries/timer_job_queues" }
+tracing = { workspace = true }
+types = { path = "../../../libraries/types" }
+user_canister = { path = "../../user/api" }
+user_canister_c2c_client = { path = "../../user/c2c_client" }
+user_ids_set = { path = "../../../libraries/user_ids_set" }
+user_index_canister = { path = "../../user_index/api" }
+user_index_canister_c2c_client = { path = "../../user_index/c2c_client" }
+utils = { path = "../../../libraries/utils" }
+x509-parser = { workspace = true }

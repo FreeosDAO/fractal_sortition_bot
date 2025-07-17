@@ -1,0 +1,11 @@
+[package]
+name = "index_store"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-trait = { workspace = true }
+futures = { workspace = true }
+types = { path = "../types" }

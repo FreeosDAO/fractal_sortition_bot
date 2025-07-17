@@ -1,0 +1,279 @@
+[workspace]
+members = [
+    "backend/benchmarks",
+    "backend/canisters/airdrop_bot/api",
+    "backend/canisters/airdrop_bot/c2c_client",
+    "backend/canisters/airdrop_bot/impl",
+    "backend/canisters/community/api",
+    "backend/canisters/community/c2c_client",
+    "backend/canisters/community/impl",
+    "backend/canisters/cycles_dispenser/api",
+    "backend/canisters/cycles_dispenser/c2c_client",
+    "backend/canisters/cycles_dispenser/impl",
+    "backend/canisters/escrow/api",
+    "backend/canisters/escrow/c2c_client",
+    "backend/canisters/escrow/impl",
+    "backend/canisters/event_relay/api",
+    "backend/canisters/event_relay/impl",
+    "backend/canisters/group/api",
+    "backend/canisters/group/c2c_client",
+    "backend/canisters/group/impl",
+    "backend/canisters/group_index/api",
+    "backend/canisters/group_index/c2c_client",
+    "backend/canisters/group_index/client",
+    "backend/canisters/group_index/impl",
+    "backend/canisters/identity/api",
+    "backend/canisters/identity/c2c_client",
+    "backend/canisters/identity/impl",
+    "backend/canisters/local_user_index/api",
+    "backend/canisters/local_user_index/c2c_client",
+    "backend/canisters/local_user_index/client",
+    "backend/canisters/local_user_index/impl",
+    "backend/canisters/market_maker/api",
+    "backend/canisters/market_maker/client",
+    "backend/canisters/market_maker/impl",
+    "backend/canisters/neuron_controller/api",
+    "backend/canisters/neuron_controller/impl",
+    "backend/canisters/notifications_index/api",
+    "backend/canisters/notifications_index/c2c_client",
+    "backend/canisters/notifications_index/client",
+    "backend/canisters/notifications_index/impl",
+    "backend/canisters/online_users/api",
+    "backend/canisters/online_users/c2c_client",
+    "backend/canisters/online_users/impl",
+    "backend/canisters/openchat_installer/api",
+    "backend/canisters/openchat_installer/client",
+    "backend/canisters/openchat_installer/impl",
+    "backend/canisters/proposal_validation/api",
+    "backend/canisters/proposal_validation/impl",
+    "backend/canisters/proposals_bot/api",
+    "backend/canisters/proposals_bot/impl",
+    "backend/canisters/registry/api",
+    "backend/canisters/registry/c2c_client",
+    "backend/canisters/registry/client",
+    "backend/canisters/registry/impl",
+    "backend/canisters/storage_bucket/api",
+    "backend/canisters/storage_bucket/c2c_client",
+    "backend/canisters/storage_bucket/impl",
+    "backend/canisters/storage_index/api",
+    "backend/canisters/storage_index/c2c_client",
+    "backend/canisters/storage_index/client",
+    "backend/canisters/storage_index/impl",
+    "backend/canisters/translations/api",
+    "backend/canisters/translations/impl",
+    "backend/canisters/user/api",
+    "backend/canisters/user/c2c_client",
+    "backend/canisters/user/client",
+    "backend/canisters/user/impl",
+    "backend/canisters/user_index/api",
+    "backend/canisters/user_index/c2c_client",
+    "backend/canisters/user_index/client",
+    "backend/canisters/user_index/impl",
+    "backend/external_canisters/ckbtc_minter/api",
+    "backend/external_canisters/ckbtc_minter/c2c_client",
+    "backend/external_canisters/cmc/api",
+    "backend/external_canisters/cmc/c2c_client",
+    "backend/external_canisters/icdex/api",
+    "backend/external_canisters/icdex/c2c_client",
+    "backend/external_canisters/icp_ledger/api",
+    "backend/external_canisters/icp_ledger/c2c_client",
+    "backend/external_canisters/icpswap_swap_pool/api",
+    "backend/external_canisters/icpswap_swap_pool/c2c_client",
+    "backend/external_canisters/icrc_ledger/api",
+    "backend/external_canisters/icrc_ledger/c2c_client",
+    "backend/external_canisters/kongswap/api",
+    "backend/external_canisters/kongswap/c2c_client",
+    "backend/external_canisters/modclub/api",
+    "backend/external_canisters/modclub/c2c_client",
+    "backend/external_canisters/nns_governance/api",
+    "backend/external_canisters/nns_governance/c2c_client",
+    "backend/external_canisters/sns_archive/api",
+    "backend/external_canisters/sns_archive/c2c_client",
+    "backend/external_canisters/sns_governance/api",
+    "backend/external_canisters/sns_governance/c2c_client",
+    "backend/external_canisters/sns_ledger/api",
+    "backend/external_canisters/sns_ledger/c2c_client",
+    "backend/external_canisters/sns_swap/api",
+    "backend/external_canisters/sns_swap/c2c_client",
+    "backend/external_canisters/sns_wasm/api",
+    "backend/external_canisters/sns_wasm/c2c_client",
+    "backend/external_canisters/sonic/api",
+    "backend/external_canisters/sonic/c2c_client",
+    "backend/integration_tests",
+    "backend/legacy_bots/api",
+    "backend/legacy_bots/c2c_client",
+    "backend/libraries/activity_notification_state",
+    "backend/libraries/candid_gen",
+    "backend/libraries/canister_agent_utils",
+    "backend/libraries/canister_api_macros",
+    "backend/libraries/canister_client",
+    "backend/libraries/canister_client_macros",
+    "backend/libraries/canister_logger",
+    "backend/libraries/canister_state_macros",
+    "backend/libraries/canister_time",
+    "backend/libraries/canister_timer_jobs",
+    "backend/libraries/canister_tracing_macros",
+    "backend/libraries/chat_events",
+    "backend/libraries/constants",
+    "backend/libraries/cycles_dispenser_client",
+    "backend/libraries/dynamodb_index_store",
+    "backend/libraries/error_codes",
+    "backend/libraries/fire_and_forget_handler",
+    "backend/libraries/gated_groups",
+    "backend/libraries/group_chat_core",
+    "backend/libraries/group_community_common",
+    "backend/libraries/http_request",
+    "backend/libraries/human_readable",
+    "backend/libraries/human_readable_derive",
+    "backend/libraries/icdex_client",
+    "backend/libraries/identity_utils",
+    "backend/libraries/index_store",
+    "backend/libraries/installed_bots",
+    "backend/libraries/instruction_counts_log",
+    "backend/libraries/json",
+    "backend/libraries/jwt",
+    "backend/libraries/ledger_utils",
+    "backend/libraries/msgpack",
+    "backend/libraries/p256_key_pair",
+    "backend/libraries/principal_to_user_id_map",
+    "backend/libraries/proof_of_unique_personhood",
+    "backend/libraries/storage_bucket_client",
+    "backend/libraries/search",
+    "backend/libraries/sha256",
+    "backend/libraries/stable_memory",
+    "backend/libraries/stable_memory_map",
+    "backend/libraries/testing",
+    "backend/libraries/timer_job_queues",
+    "backend/libraries/ts_export",
+    "backend/libraries/ts_export_macros",
+    "backend/libraries/types",
+    "backend/libraries/user_ids_set",
+    "backend/libraries/utils",
+    "backend/notification_pusher/aws",
+    "backend/notification_pusher/cli",
+    "backend/notification_pusher/core",
+    "backend/tools/account_id",
+    "backend/tools/canister_installer",
+    "backend/tools/canister_upgrade_proposal_builder",
+    "backend/tools/canister_upgrader",
+    "backend/tools/canister_wasm_chunks_uploader",
+    "backend/tools/dupe_deps_detector",
+    "backend/tools/local_canister_creator",
+    "backend/tools/principal_generator",
+    "backend/tools/translation_tool",
+    "backend/tools/ts_exporter",
+    "frontend/src-tauri",
+    "frontend/tauri-plugin-oc",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+async-channel = "2"
+async-trait = "0.1"
+aws-config = "1"
+aws-sdk-dynamodb = "1"
+aws-types = "1"
+base64 = "0.22"
+bitflags = { version = "2", features = ["serde"] }
+candid = "0.10"
+canbench-rs = "0.2"
+clap = "4"
+ct-codecs = "1"
+data-encoding = "2"
+dataurl = "0.1"
+dotenv = "0.15.0"
+either = "1.15.0"
+enum-repr = "0.2"
+envconfig = "0.11"
+event_store_canister = { git = "https://github.com/open-chat-labs/event-store", tag = "v0.10.0" }
+event_store_producer = { git = "https://github.com/open-chat-labs/event-store", tag = "v0.10.0" }
+event_store_producer_cdk_runtime = { git = "https://github.com/open-chat-labs/event-store", tag = "v0.10.0" }
+event_store_types = { git = "https://github.com/open-chat-labs/event-store", tag = "v0.10.0" }
+event_store_utils = { git = "https://github.com/open-chat-labs/event-store", tag = "v0.10.0" }
+fcm-service = { git = "https://github.com/ivan-jukic/fcm-service", branch = "main" }
+futures = "0.3"
+getrandom = { version = "0.2", features = ["custom"] }
+hex = "0.4"
+hmac-sha256 = { version = "1", features = ["traits010"] }
+http = "1"
+ic-agent = "0.40"
+ic-canister-sig-creation = "1"
+ic-captcha = "1"
+ic-cbor = "2"
+ic-cdk = "0.18"
+ic-cdk-macros = "0.18"
+ic-cdk-timers = "0.12"
+ic-certificate-verification = "2"
+ic-certification = "2"
+ic-http-certification = "2"
+ic-ledger-types = "0.15"
+ic-management-canister-types = "0.3"
+ic_principal = "0.1"
+ic-stable-structures = "0.6"
+ic-transport-types = "0.40"
+ic-utils = "0.40"
+ic-verifiable-credentials = "1"
+icrc-ledger-types = "0.1"
+ic0 = "1"
+itertools = "0.14"
+jwt-simple = { version = "0.12", default-features = false, features = [
+    "pure-rust",
+] }
+lazy_static = "1"
+num-traits = "0.2"
+openssl = "0.10"
+p256 = { version = "0.13" }
+pocket-ic = "9"
+proc-macro2 = "1"
+prometheus = "0.14"
+proptest = "1"
+pulldown-cmark = { version = "0.13", default-features = false, features = [
+    "html",
+] }
+quote = "1"
+rand = "0.8"
+range-set = "0.0.11"
+regex-lite = "0.1"
+reqwest = "0.12"
+rmp-serde = "1"
+serde = "1"
+serde_bytes = "0.11"
+serde_cbor = "0.11"
+serde_json = "1"
+serde_repr = "0.1"
+serde_tokenstream = "0.2"
+sha2 = "0.10"
+sha3 = "0.10"
+sign_in_with_email_canister = { git = "https://github.com/open-chat-labs/ic-sign-in-with-email", rev = "v0.13.0" }
+sign_in_with_email_canister_test_utils = { package = "test_utils", git = "https://github.com/open-chat-labs/ic-sign-in-with-email", rev = "v0.13.0" }
+syn = "2"
+tauri = "2"
+test-case = "3"
+test-strategy = "0.4"
+thiserror = "2"
+time = "0.3"
+tokio = "1"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+ts-rs = { version = "10", features = ["no-serde-warnings"] }
+twox-hash = { version = "2", default-features = false, features = ["xxhash3_128"] }
+url = "2"
+urlencoding = "2"
+web-push = { version = "0.11", default-features = false, features = [
+    "hyper-client",
+] }
+x509-parser = "0.17"
+
+[profile.release]
+lto = true
+opt-level = "z"
+codegen-units = 1
+debug = false
+
+[patch.crates-io]
+rmp-serde = { git = "https://github.com/hpeebles/msgpack-rust", rev = "832a3f48e67eea56c869715ae6e1045583dd011b" }
+ts-rs = { git = "https://github.com/hpeebles/ts-rs", rev = "c584e25ce28fa27b64964c208725b6bc100fbdac" }

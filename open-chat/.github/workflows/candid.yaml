@@ -1,0 +1,45 @@
+on:
+  pull_request:
+    branches:
+      - master
+
+# If two events are triggered within a short time in the same PR, cancel the run of the oldest event
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+name: Validate candid files
+
+jobs:
+  candid_syntax:
+    name: validate candid syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install didc 0.3.2
+        uses: supplypike/setup-bin@v1
+        with:
+          uri: https://github.com/dfinity/candid/releases/download/2023-07-11/didc-linux64
+          name: didc
+          version: 0.3.2
+      - name: run validate-candid-syntax.sh
+        run: ./scripts/validate-candid-syntax.sh
+        shell: bash
+
+  candid_matches_rust:
+    name: validate candid matches rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/setup-rust
+        with:
+          cache: read
+      - name: install didc 0.3.2
+        uses: supplypike/setup-bin@v1
+        with:
+          uri: https://github.com/dfinity/candid/releases/download/2023-07-11/didc-linux64
+          name: didc
+          version: 0.3.2
+      - name: run validate-candid-matches-rust.sh
+        run: ./scripts/validate-candid-matches-rust.sh
+        shell: bash

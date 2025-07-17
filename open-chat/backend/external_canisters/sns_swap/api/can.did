@@ -1,0 +1,9 @@
+// Copied from https://github.com/dfinity/ic/blob/master/rs/nns/sns-wasm/canister/sns-wasm.did
+
+type GetLifecycleResponse = record {
+    decentralization_sale_open_timestamp_seconds : opt nat64;
+    lifecycle : opt int32;
+};
+service : {
+    get_lifecycle : (record {}) -> (GetLifecycleResponse) query;
+}

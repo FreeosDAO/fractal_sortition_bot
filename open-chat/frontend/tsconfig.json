@@ -1,0 +1,22 @@
+{
+    "extends": "@tsconfig/svelte/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "build", // prevents "cannot overwrite file" errors in IDE
+        "module": "ESNext",
+        "allowJs": true,
+        "checkJs": false,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker"],
+        "moduleResolution": "bundler",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "resolveJsonModule": true,
+        "sourceMap": false,
+        "target": "ESNext",
+        "types": ["jest", "node", "svelte"],
+        "useDefineForClassFields": true,
+        "verbatimModuleSyntax": true
+    },
+    "exclude": ["build/**/*", "lib/**/*", "node_modules"]
+}

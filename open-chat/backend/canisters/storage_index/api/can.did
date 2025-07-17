@@ -1,0 +1,60 @@
+import "../../../libraries/types/can.did";
+
+type AllocatedBucketArgs = record {
+    file_hash : Hash;
+    file_size : nat64;
+    file_id_seed : opt nat;
+};
+
+type AllocatedBucketResponse = variant {
+    Success : AllocatedBucketSuccessResult;
+    AllowanceExceeded : ProjectedAllowance;
+    UserNotFound;
+    BucketUnavailable;
+};
+
+type AllocatedBucketSuccessResult = record {
+    canister_id : CanisterId;
+    file_id : FileId;
+    chunk_size : nat32;
+    byte_limit : nat64;
+    bytes_used : nat64;
+    bytes_used_after_upload : nat64;
+    projected_allowance : ProjectedAllowance;
+};
+
+type ProjectedAllowance = record {
+    byte_limit : nat64;
+    bytes_used : nat64;
+    bytes_used_after_upload : nat64;
+    bytes_used_after_operation : nat64;
+};
+
+type CanForwardArgs = record {
+    file_hash : Hash;
+    file_size : nat64;
+};
+
+type CanForwardResponse = variant {
+    Success : ProjectedAllowance;
+    AllowanceExceeded : ProjectedAllowance;
+    UserNotFound;
+};
+
+type UserArgs = record {};
+
+type UserResponse = variant {
+    Success : UserRecord;
+    UserNotFound;
+};
+
+type UserRecord = record {
+    byte_limit : nat64;
+    bytes_used : nat64;
+};
+
+service : {
+    allocated_bucket_v2 : (AllocatedBucketArgs) -> (AllocatedBucketResponse) query;
+    can_forward : (CanForwardArgs) -> (CanForwardResponse) query;
+    user : (UserArgs) -> (UserResponse) query;
+};

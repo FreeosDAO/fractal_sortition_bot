@@ -1,0 +1,14 @@
+[package]
+name = "escrow_canister"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+candid = { workspace = true }
+icrc-ledger-types = { workspace = true }
+oc_error_codes = { path = "../../../libraries/error_codes" }
+serde = { workspace = true }
+sha256 = { path = "../../../libraries/sha256" }
+types = { path = "../../../libraries/types" }

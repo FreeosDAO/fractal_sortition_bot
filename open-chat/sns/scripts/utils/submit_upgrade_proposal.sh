@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Set current directory to the directory this script is in
+SCRIPT=$(readlink -f "$0")
+SCRIPT_DIR=$(dirname "$SCRIPT")
+cd $SCRIPT_DIR
+
+# Extract the args
+CANISTER_NAME=$1
+VERSION=$2
+TITLE=$3
+URL=$4
+SUMMARY=$5
+UPGRADE_ARG=$6
+
+# Get the target canister id
+TARGET_CANISTER_ID=$(dfx -qq canister --network $NETWORK id $CANISTER_NAME)
+
+# Build the WASM path
+WASM_FILE=$CANISTER_NAME.wasm.gz
+WASM_PATH=$WASM_FOLDER/$WASM_FILE
+
+# Make the proposal using quill
+quill sns --canister-ids-file ./sns_canister_ids.json --pem-file $PEM_FILE make-upgrade-canister-proposal --canister-upgrade-arg "$UPGRADE_ARG" --title "$TITLE" --url "$URL" --summary "$SUMMARY" --target-canister-id $TARGET_CANISTER_ID --wasm-path $WASM_PATH $PROPOSER_NEURON_ID --mode upgrade > msg.json
+quill send msg.json
+rm -f msg.json

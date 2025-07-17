@@ -1,0 +1,32 @@
+import type { Logger } from "openchat-shared";
+import { AuthProvider, type GroupInvite } from "openchat-shared";
+
+export type AgentConfig = {
+    appType?: "android" | "ios" | "web";
+    authPrincipal: string;
+    authProvider: AuthProvider | undefined;
+    icUrl: string;
+    iiDerivationOrigin?: string;
+    openStorageIndexCanister: string;
+    groupIndexCanister: string;
+    notificationsCanister: string;
+    onlineCanister: string;
+    userIndexCanister: string;
+    translationsCanister: string;
+    registryCanister: string;
+    identityCanister: string;
+    internetIdentityUrl: string;
+    nfidUrl: string;
+    userGeekApiKey: string;
+    enableMultiCrypto?: boolean;
+    blobUrlPattern: string;
+    canisterUrlPath: string;
+    proposalBotCanister: string;
+    marketMakerCanister: string;
+    signInWithEmailCanister: string;
+    signInWithEthereumCanister: string;
+    signInWithSolanaCanister: string;
+    bitcoinMainnetEnabled: boolean;
+    groupInvite?: GroupInvite;
+    logger: Logger;
+};

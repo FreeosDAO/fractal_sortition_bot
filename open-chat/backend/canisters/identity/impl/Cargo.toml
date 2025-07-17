@@ -1,0 +1,41 @@
+[package]
+name = "identity_canister_impl"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+candid = { workspace = true }
+canister_api_macros = { path = "../../../libraries/canister_api_macros" }
+canister_logger = { path = "../../../libraries/canister_logger" }
+canister_state_macros = { path = "../../../libraries/canister_state_macros" }
+canister_tracing_macros = { path = "../../../libraries/canister_tracing_macros" }
+constants = { path = "../../../libraries/constants" }
+http_request = { path = "../../../libraries/http_request" }
+ic-canister-sig-creation = { workspace = true }
+ic-captcha = { workspace = true }
+ic-cdk = { workspace = true }
+ic-cdk-timers = { workspace = true }
+ic-certificate-verification = { workspace = true }
+ic-certification = { workspace = true }
+ic-stable-structures = { workspace = true }
+identity_canister = { path = "../api" }
+identity_utils = { path = "../../../libraries/identity_utils" }
+msgpack = { path = "../../../libraries/msgpack" }
+oc_error_codes = { path = "../../../libraries/error_codes" }
+rand = { workspace = true }
+serde = { workspace = true }
+serde_bytes = { workspace = true }
+sha256 = { path = "../../../libraries/sha256" }
+stable_memory = { path = "../../../libraries/stable_memory" }
+tracing = { workspace = true }
+types = { path = "../../../libraries/types" }
+user_index_canister = { path = "../../user_index/api" }
+user_index_canister_c2c_client = { path = "../../user_index/c2c_client" }
+utils = { path = "../../../libraries/utils" }
+x509-parser = { workspace = true }

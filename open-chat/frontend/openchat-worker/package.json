@@ -1,0 +1,36 @@
+{
+    "name": "openchat-worker",
+    "version": "1.0.0",
+    "description": "Typescript library for interacting with the OpenChat backend",
+    "main": "lib/worker.js",
+    "scripts": {
+        "build": "rollup -c",
+        "build:docker": "npm run build",
+        "dev": "rollup -cw",
+        "dev:mobile": "npm run dev",
+        "wait": "npm run clean && wait-on lib/worker.js",
+        "android:release": "npm run build",
+        "clean": "rm -f lib/worker.js",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint ./src --fix",
+        "codegen": "sh ./codegen.sh"
+    },
+    "author": "julian.jelfs@gmail.com",
+    "dependencies": {
+        "@dfinity/agent": "^3.0.0-beta.1",
+        "@dfinity/auth-client": "^3.0.0-beta.1",
+        "@dfinity/identity": "^3.0.0-beta.1",
+        "@dfinity/principal": "^3.0.0-beta.1",
+        "openchat-agent": "*",
+        "openchat-shared": "*"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^6.4.0",
+        "@typescript-eslint/parser": "^6.4.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "ts-loader": "^9.4.4",
+        "typescript": "=5.4.2",
+        "wait-on": "^7.0.1"
+    }
+}

@@ -1,0 +1,384 @@
+import "../../../libraries/types/can.did";
+
+type UserRegistrationCanisterResponse = variant {
+    Success : CanisterId;
+    NewRegistrationsClosed;
+    Error : OCError;
+};
+
+type PublicKeyResponse = variant {
+    Success : text;
+    NotInitialised;
+    Error : OCError;
+};
+
+type BotUpdatesArgs = record {
+    updated_since : TimestampMillis;
+};
+
+type BotUpdatesResponse = variant {
+    Success : record {
+        added_or_updated: vec record {
+            id : UserId;
+            owner : UserId;
+            name : text;
+            avatar_id : opt nat;
+            endpoint : text;
+            description : text;
+            commands : vec BotCommandDefinition;
+            autonomous_config : opt AutonomousConfig;
+            last_updated : TimestampMillis;
+            registration_status : BotRegistrationStatus;
+        };
+        removed : vec UserId;
+        timestamp : TimestampMillis;
+    };
+    SuccessNoUpdates;
+};
+
+type BotRegistrationStatus = variant {
+    Private : opt BotInstallationLocation;
+    Public;
+};
+
+type CheckUsernameArgs = record {
+    username : text;
+    is_bot : bool;
+};
+
+type CheckUsernameResponse = variant {
+    Success;
+    UsernameTaken;
+    UsernameInvalid;
+    UsernameTooShort : nat16;
+    UsernameTooLong : nat16;
+    Error : OCError;
+};
+
+type CurrentUserResponse = variant {
+    Success : record {
+        user_id : UserId;
+        username : text;
+        date_created : TimestampMillis;
+        display_name : opt text;
+        canister_upgrade_status : CanisterUpgradeStatus;
+        avatar_id : opt nat;
+        wasm_version : BuildVersion;
+        icp_account : AccountIdentifier;
+        referrals : vec UserId;
+        is_platform_moderator : bool;
+        is_platform_operator : bool;
+        suspension_details : opt SuspensionDetails;
+        is_suspected_bot : bool;
+        diamond_membership_details : opt DiamondMembershipDetails;
+        diamond_membership_status : DiamondMembershipStatusFull;
+        moderation_flags_enabled : nat32;
+        is_unique_person : bool;
+        total_chit_earned : int32;
+        chit_balance : int32;
+        streak : nat16;
+        max_streak : nat16;
+    };
+    UserNotFound;
+    Error : OCError;
+};
+
+type UserArgs = record {
+    user_id : opt UserId;
+    username : opt text;
+};
+
+type UserResponse = variant {
+    Success : UserSummary;
+    UserNotFound;
+    Error : OCError;
+};
+
+type UsersArgs = record {
+    user_groups : vec record {
+        users : vec UserId;
+        updated_since : TimestampMillis;
+    };
+    users_suspended_since : opt TimestampMillis;
+};
+
+type UsersResponse = variant {
+    Success : record {
+        users : vec UserSummaryV2;
+        current_user : opt CurrentUserSummary;
+        deleted : vec UserId;
+        timestamp : TimestampMillis;
+    };
+};
+
+type ExploreBotsArgs = record {
+    installation_location : opt BotInstallationLocation;
+    search_term : opt text;
+    page_index : nat32;
+    page_size : nat8;
+    exclude_installed : bool;
+};
+
+type ExploreBotsResponse = variant {
+    Success : record {
+        matches : vec BotMatch;
+        total : nat32;
+    };
+    TermTooShort : nat8;
+    TermTooLong : nat8;
+    InvalidTerm;
+    Error : OCError;
+};
+
+type BotMatch = record {
+    id : UserId;
+    score : nat32;
+    owner : UserId;
+    name : text;
+    description : text;
+    endpoint : text;
+    avatar_id : opt nat;
+    commands : vec BotCommandDefinition;
+    autonomous_config : opt AutonomousConfig;
+};
+
+type SearchArgs = record {
+    search_term : text;
+    max_results : nat8;
+};
+
+type SearchResponse = variant {
+    Success : record {
+        users : vec UserSummary;
+        timestamp : TimestampMillis;
+    };
+};
+
+type UsersChitArgs = record {
+    users : vec UserId;
+    year : nat16;
+    month : nat8;
+};
+
+type UsersChitResponse = variant {
+    Success : record {
+        chit : vec Chit;
+    };
+};
+
+type DiamondMembershipFeesResponse = variant {
+    Success : vec record {
+        token_symbol : text;
+        one_month : nat64;
+        three_months : nat64;
+        one_year : nat64;
+        lifetime : nat64;
+    };
+};
+
+type PublishBotArgs = record {
+    bot_id : UserId;
+};
+
+type PublishBotResponse = variant {
+    Success;
+    NotFound;
+    NotAuthorised;
+    Error : OCError;
+};
+
+type UpdateBotArgs = record {
+    bot_id : UserId;
+    owner : opt UserId;
+    "principal" : opt principal;
+    avatar : TextUpdate; // Image as a data URL
+    endpoint : opt text;
+    definition : opt BotDefinition;
+};
+
+type UpdateBotResponse = variant {
+    Success;
+    PrincipalInvalid;
+    PrincipalAlreadyUsed;
+    AvatarInvalid;
+    EndpointInvalid;
+    BotNotFound;
+    BotSuspended;
+    NotAuthorised;
+    OwnerNotFound;
+    OwnerSuspended;
+    NewOwnerNotFound;
+    NewOwnerSuspended;
+    DescriptionTooLong;
+    TooManyCommands;
+    Error : OCError;
+};
+
+type RemoveBotArgs = record {
+    bot_id : UserId;
+};
+
+type RemoveBotResponse = variant {
+    Success;
+    BotNotFound;
+    NotAuthorised;
+    Error : OCError;
+};
+
+type BotDefinition = record {
+    description : text;
+    commands : vec BotCommandDefinition;
+    autonomous_config : opt AutonomousConfig;
+    default_subscriptions : opt BotSubscriptions;
+    data_encoding : opt BotDataEncoding;
+};
+
+type AutonomousConfig = record {
+    permissions : BotPermissions;
+};
+
+type BotSubscriptions = record {
+    community : vec CommunityEventType;
+    chat : vec ChatEventType;
+};
+
+type RegisterExternalAchievementArgs = record {
+    id : nat32;
+    submitted_by : UserId;
+    name : text;
+    logo : text;
+    url : text;
+    canister_id : CanisterId;
+    chit_reward : nat32;
+    expires : TimestampMillis;
+    max_awards : nat32;
+};
+
+type RegisterExternalAchievementResponse = variant {
+    Success;
+};
+
+type PlatformModeratorsResponse = variant {
+    Success : record {
+        users : vec UserId;
+    };
+};
+
+type PlatformModeratorsGroupResponse = variant {
+    Success : ChatId;
+};
+
+type PlatformOperatorsArgs = record {};
+
+type PlatformOperatorsResponse = variant {
+    Success : record {
+        users : vec UserId;
+    };
+};
+
+type ExternalAchievementsArgs = record {
+    updates_since : TimestampMillis;
+};
+
+type ExternalAchievementsResponse = variant {
+    Success : record {
+        last_updated: TimestampMillis;
+        added_or_updated : vec ExternalAchievement;
+    };
+    SuccessNoUpdates;
+};
+
+type ExternalAchievement = record {
+    id : nat32;
+    name : text;
+    url : text;
+    chit_reward : nat32;
+    expires : TimestampMillis;
+    budget_exhausted : bool;
+};
+
+type ReferralMetricsResponse = variant {
+    Success : record {
+        users_who_referred : nat32;
+        users_who_referred_paid_diamond : nat32;
+        users_who_referred_unpaid_diamond : nat32;
+        users_who_referred_90_percent_unpaid_diamond : nat32;
+        referrals_of_paid_diamond : nat32;
+        referrals_of_unpaid_diamond : nat32;
+        referrals_other : nat32;
+        icp_raised_by_referrals_to_paid_diamond : nat32;
+    };
+};
+
+type ReferralStats = record {
+    user_id : UserId;
+    username : text;
+    total_rewards_e8s : nat64;
+    diamond_members : nat32;
+    total_users : nat32;
+};
+
+type ChitLeaderboardResponse = variant {
+    SuccessV2 : record {
+        all_time : vec ChitUserBalance;
+        this_month : vec ChitUserBalance;
+        last_month : vec ChitUserBalance;
+    };
+};
+
+type ChitUserBalance = record {
+    user_id : UserId;
+    username : text;
+    balance : nat32;
+};
+
+type AwardExternalAchievementArgs = record {
+    achievement_id : nat32;
+    user_id : UserId;
+};
+
+type AwardExternalAchievementResponse = variant {
+    Success : record {
+        remaining_chit_budget : nat32;
+    };
+    InvalidCaller;
+    NotFound;
+    AlreadyAwarded;
+    InsufficientBudget;
+    Expired;
+    Error : OCError;
+};
+
+service : {
+    // Queries
+    bot_updates : (BotUpdatesArgs) -> (BotUpdatesResponse) query;
+    check_username : (CheckUsernameArgs) -> (CheckUsernameResponse) query;
+    chit_leaderboard : (EmptyArgs) -> (ChitLeaderboardResponse) query;
+    current_user : (EmptyArgs) -> (CurrentUserResponse) query;
+    diamond_membership_fees : (EmptyArgs) -> (DiamondMembershipFeesResponse) query;
+    explore_bots : (ExploreBotsArgs) -> (ExploreBotsResponse) query;
+    external_achievements : (ExternalAchievementsArgs) -> (ExternalAchievementsResponse) query;
+    platform_moderators : (EmptyArgs) -> (PlatformModeratorsResponse) query;
+    platform_moderators_group : (EmptyArgs) -> (PlatformModeratorsGroupResponse) query;
+    platform_operators : (PlatformOperatorsArgs) -> (PlatformOperatorsResponse) query;
+    public_key : (EmptyArgs) -> (PublicKeyResponse) query;
+    referral_metrics : (EmptyArgs) -> (ReferralMetricsResponse) query;
+    search : (SearchArgs) -> (SearchResponse) query;
+    user_registration_canister : (EmptyArgs) -> (UserRegistrationCanisterResponse) query;
+    user : (UserArgs) -> (UserResponse) query;
+    users_chit : (UsersChitArgs) -> (UsersChitResponse) query;
+    users : (UsersArgs) -> (UsersResponse) query;
+
+    // Only callable by SNS governance canister
+    publish_bot: (PublishBotArgs) -> (PublishBotResponse);
+    register_external_achievement : (RegisterExternalAchievementArgs) -> (RegisterExternalAchievementResponse);
+
+    // Only callable by whitelisted canisters
+    award_external_achievement : (AwardExternalAchievementArgs) -> (AwardExternalAchievementResponse);
+
+    // Only callable by bot owner
+    update_bot : (UpdateBotArgs) -> (UpdateBotResponse);
+
+    // Only callable by SNS governance canister or by bot owner
+    remove_bot : (RemoveBotArgs) -> (RemoveBotResponse);
+};

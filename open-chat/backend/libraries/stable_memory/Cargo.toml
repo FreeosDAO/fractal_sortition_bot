@@ -1,0 +1,10 @@
+[package]
+name = "stable_memory"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ic-cdk = { workspace = true }
+ic-stable-structures = { workspace = true }

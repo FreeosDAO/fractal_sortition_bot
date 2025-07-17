@@ -1,0 +1,38 @@
+import type { CommunityInvite, GroupInvite, Logger, MessageFormatter } from "openchat-shared";
+
+export type OpenChatConfig = {
+    appType?: "android" | "ios" | "web";
+    icUrl?: string;
+    webAuthnOrigin: string | undefined;
+    iiDerivationOrigin?: string;
+    openStorageIndexCanister: string;
+    groupIndexCanister: string;
+    notificationsCanister: string;
+    identityCanister: string;
+    onlineCanister: string;
+    userIndexCanister: string;
+    translationsCanister: string;
+    registryCanister: string;
+    internetIdentityUrl: string;
+    nfidUrl: string;
+    userGeekApiKey: string;
+    videoBridgeUrl: string;
+    meteredApiKey: string;
+    enableMultiCrypto?: boolean;
+    blobUrlPattern: string;
+    canisterUrlPath: string;
+    proposalBotCanister: string;
+    marketMakerCanister: string;
+    signInWithEmailCanister: string;
+    signInWithEthereumCanister: string;
+    signInWithSolanaCanister: string;
+    i18nFormatter: MessageFormatter;
+    logger: Logger;
+    websiteVersion: string;
+    rollbarApiKey: string;
+    env: string;
+    bitcoinMainnetEnabled: boolean;
+    groupInvite?: GroupInvite;
+    communityInvite?: CommunityInvite;
+    vapidPublicKey: string;
+};
