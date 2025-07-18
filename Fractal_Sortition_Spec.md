@@ -1,8 +1,3 @@
-Perfect. I’ll create a comprehensive Markdown Technical Specification document for the Fractal Sortition Bot prototype. It will include implementation details for the Motoko canister, integration with OpenChat, full UX flows, command references, data models, API logic (where applicable), as well as user stories with clear acceptance criteria.
-
-I’ll let you know as soon as the full document is ready for review.
-
-
 # Fractal Sortition Bot – Technical Specification
 
 ## Overview and Project Purpose
